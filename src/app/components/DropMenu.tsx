@@ -1,73 +1,138 @@
 "use client"
-import { Transition, Dialog } from "@headlessui/react"
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"
+import { Transition, Popover } from "@headlessui/react"
 import Link from "next/link"
 import { Fragment, useState } from "react"
 import { menuLinks } from "@/lib/utils"
+import {
+  motion,
+  type Transition as MotionFrameTransition,
+  type SVGMotionProps,
+} from "framer-motion"
+import { usePathname } from "next/navigation"
+import { twMerge } from "tailwind-merge"
 
 export default function DropMenu() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [_, setIsOpen] = useState(false) // Previous modal
+  const activePath = usePathname().split("/")[1]
 
-  const modal = {
-    open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
-  }
+  const isActive = (link: string) => link.toLowerCase() === activePath.toLowerCase()
 
   return (
-    <>
-      <button onClick={modal.open} className="text-zinc-50">
-        <Bars3Icon className="h-8 w-8" />
-      </button>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={modal.close}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-200"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+    <Popover className="relative z-50">
+      {({ open, close }) => (
+        <>
+          <Popover.Button
+            onClick={() => setIsOpen((pr) => !pr)}
+            className="relative top-[3px] focus-visible:outline-none"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-          <div className="fixed inset-0 overflow-y-auto">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-0"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-0"
-            >
-              <Dialog.Panel className="h-full basis-full bg-black">
-                <div className="flex h-16 items-center justify-end px-4 md:px-8">
-                  <button onClick={modal.close}>
-                    <XMarkIcon className="h-8 w-8 text-zinc-50" />
-                  </button>
-                </div>
-
-                <ul>
-                  {menuLinks.map((item) => (
-                    <li key={item.name} className="mt-4 flex">
-                      <Link
-                        className="group my-4 w-screen pl-12"
-                        href={item.href}
-                        onClick={modal.close}
+            <MenuButton isOpen={open} />
+          </Popover.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 scale-45"
+            enterTo="opacity-100 scale-100"
+            leave="transition ease-in duration-100"
+            leaveFrom="opacity-100 scale-150"
+            leaveTo="opacity-0 scale-45"
+          >
+            <Popover.Panel className="fixed bottom-0 left-0 right-0 top-16 h-full w-screen bg-black">
+              <ul className="mt-8 overflow-hidden">
+                {menuLinks.map((item) => (
+                  <li key={item.name} className="mt-4 flex">
+                    <Link className="group w-screen py-4 pl-12" href={item.href} onClick={close}>
+                      <span
+                        className={twMerge(
+                          "text-2xl text-zinc-300 group-hover:border-b-2 group-hover:text-zinc-100",
+                          isActive(item.href.split("/")[1]) && "font-bold text-white"
+                        )}
                       >
-                        <span className="text-3xl font-semibold group-hover:border-b-2">
-                          {item.name}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+                        {item.name}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
+    </Popover>
+  )
+}
+
+interface Props extends SVGMotionProps<SVGSVGElement> {
+  isOpen?: boolean
+  color?: string
+  strokeWidth?: string | number
+  transition?: MotionFrameTransition
+  lineProps?: any
+}
+
+const MenuButton = ({
+  isOpen = false,
+  width = 32,
+  height = 22,
+  strokeWidth = 1,
+  color = "#fff",
+  /* @ts-ignore */
+  transition = null,
+  lineProps = null,
+  ...props
+}: Props) => {
+  const variant = isOpen ? "opened" : "closed"
+  const top = {
+    closed: {
+      rotate: 0,
+      translateY: 0,
+    },
+    opened: {
+      rotate: 45,
+      translateY: 2,
+    },
+  }
+  const center = {
+    closed: {
+      opacity: 1,
+    },
+    opened: {
+      opacity: 0,
+    },
+  }
+  const bottom = {
+    closed: {
+      rotate: 0,
+      translateY: 0,
+    },
+    opened: {
+      rotate: -45,
+      translateY: -2,
+    },
+  }
+  lineProps = {
+    stroke: color,
+    strokeWidth: strokeWidth as number,
+    vectorEffect: "non-scaling-stroke",
+    initial: "closed",
+    animate: variant,
+    transition,
+    ...lineProps,
+  }
+  const unitHeight = 4
+  const unitWidth = (unitHeight * (width as number)) / (height as number)
+
+  return (
+    <motion.svg
+      viewBox={`0 0 ${unitWidth} ${unitHeight}`}
+      overflow="visible"
+      preserveAspectRatio="none"
+      width={width}
+      height={height}
+      {...props}
+    >
+      <motion.line x1="0" x2={unitWidth} y1="0" y2="0" variants={top} {...lineProps} />
+      <motion.line x1="0" x2={unitWidth} y1="2" y2="2" variants={center} {...lineProps} />
+      <motion.line x1="0" x2={unitWidth} y1="4" y2="4" variants={bottom} {...lineProps} />
+    </motion.svg>
   )
 }
