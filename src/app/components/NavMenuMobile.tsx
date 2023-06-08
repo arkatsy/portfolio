@@ -2,17 +2,13 @@
 import { Transition, Popover } from "@headlessui/react"
 import Link from "next/link"
 import { Fragment, useState } from "react"
-import { menuLinks } from "@/lib/utils"
-import {
-  motion,
-  type Transition as MotionFrameTransition,
-  type SVGMotionProps,
-} from "framer-motion"
+import { menuLinks } from "@/lib/constants"
+import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { twMerge } from "tailwind-merge"
 
-export default function DropMenu() {
-  const [_, setIsOpen] = useState(false) // Previous modal
+export default function NavMenuMobile() {
+  const [_, setIsOpen] = useState(false)
   const activePath = usePathname().split("/")[1]
 
   const isActive = (link: string) => link.toLowerCase() === activePath.toLowerCase()
@@ -25,7 +21,7 @@ export default function DropMenu() {
             onClick={() => setIsOpen((pr) => !pr)}
             className="relative top-[3px] focus-visible:outline-none"
           >
-            <MenuButton isOpen={open} />
+            <MenuSvg isOpen={open} />
           </Popover.Button>
           <Transition
             as={Fragment}
@@ -37,14 +33,14 @@ export default function DropMenu() {
             leaveTo="opacity-0 scale-45"
           >
             <Popover.Panel className="fixed bottom-0 left-0 right-0 top-16 h-full w-screen bg-black">
-              <ul className="mt-8 overflow-hidden">
+              <ul className="mt-12 overflow-hidden">
                 {menuLinks.map((item) => (
                   <li key={item.name} className="mt-4 flex">
                     <Link className="group w-screen py-4 pl-12" href={item.href} onClick={close}>
                       <span
                         className={twMerge(
                           "text-2xl text-zinc-300 group-hover:border-b-2 group-hover:text-zinc-100",
-                          isActive(item.href.split("/")[1]) && "font-bold text-white"
+                          isActive(item.href.split("/")[1]) && "font-[500] text-white"
                         )}
                       >
                         {item.name}
@@ -61,26 +57,23 @@ export default function DropMenu() {
   )
 }
 
-interface Props extends SVGMotionProps<SVGSVGElement> {
-  isOpen?: boolean
+type MenuSvgProps = {
+  isOpen: boolean
+  width?: number
+  height?: number
+  strokeWidth?: number
   color?: string
-  strokeWidth?: string | number
-  transition?: MotionFrameTransition
-  lineProps?: any
 }
 
-const MenuButton = ({
+const MenuSvg = ({
   isOpen = false,
   width = 32,
   height = 22,
   strokeWidth = 1,
   color = "#fff",
-  /* @ts-ignore */
-  transition = null,
-  lineProps = null,
-  ...props
-}: Props) => {
+}: MenuSvgProps) => {
   const variant = isOpen ? "opened" : "closed"
+
   const top = {
     closed: {
       rotate: 0,
@@ -91,7 +84,8 @@ const MenuButton = ({
       translateY: 2,
     },
   }
-  const center = {
+
+  const middle = {
     closed: {
       opacity: 1,
     },
@@ -99,6 +93,7 @@ const MenuButton = ({
       opacity: 0,
     },
   }
+
   const bottom = {
     closed: {
       rotate: 0,
@@ -109,15 +104,15 @@ const MenuButton = ({
       translateY: -2,
     },
   }
-  lineProps = {
+
+  const lineProps = {
     stroke: color,
     strokeWidth: strokeWidth as number,
     vectorEffect: "non-scaling-stroke",
     initial: "closed",
     animate: variant,
-    transition,
-    ...lineProps,
   }
+
   const unitHeight = 4
   const unitWidth = (unitHeight * (width as number)) / (height as number)
 
@@ -128,10 +123,9 @@ const MenuButton = ({
       preserveAspectRatio="none"
       width={width}
       height={height}
-      {...props}
     >
       <motion.line x1="0" x2={unitWidth} y1="0" y2="0" variants={top} {...lineProps} />
-      <motion.line x1="0" x2={unitWidth} y1="2" y2="2" variants={center} {...lineProps} />
+      <motion.line x1="0" x2={unitWidth} y1="2" y2="2" variants={middle} {...lineProps} />
       <motion.line x1="0" x2={unitWidth} y1="4" y2="4" variants={bottom} {...lineProps} />
     </motion.svg>
   )

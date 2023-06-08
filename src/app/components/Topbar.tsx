@@ -1,5 +1,4 @@
-// import Avatar from "./Profile"
-import DropMenu from "./DropMenu"
+import DropMenu from "./NavMenuMobile"
 import NavMenu from "./NavMenu"
 import Link from "next/link"
 import Image from "next/image"
@@ -8,7 +7,6 @@ export default function Topbar() {
   return (
     <div className="flex items-center justify-between">
       <Link href="/home" className="flex items-center gap-4 text-lg tracking-tight">
-        {/* <Avatar /> */}
         <Avatar />
         <div className="flex">
           <span>Argyris</span>

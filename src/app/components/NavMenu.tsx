@@ -1,6 +1,5 @@
 "use client"
-
-import { menuLinks } from "@/lib/utils"
+import { menuLinks } from "@/lib/constants"
 import { usePathname } from "next/navigation"
 import { twMerge } from "tailwind-merge"
 import { LayoutGroup, motion } from "framer-motion"
