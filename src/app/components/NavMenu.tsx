@@ -20,7 +20,12 @@ export default function NavMenu() {
                 href={item.href}
                 className={twMerge("text-md rounded-md font-medium transition-all")}
               >
-                <span className="relative px-4 py-2 text-zinc-100">
+                <span
+                  className={twMerge(
+                    `relative px-4 py-2 text-zinc-300 hover:text-zinc-200`,
+                    isActive(item.href.split("/")[1]) ? "font-semibold text-white" : ""
+                  )}
+                >
                   {item.name}
                   {isActive(item.href.split("/")[1]) ? (
                     <motion.div

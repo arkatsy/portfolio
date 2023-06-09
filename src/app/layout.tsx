@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
         </div>
         <div className="flex justify-center">
-          <main className="w-full max-w-4xl px-4 md:px-8">{children}</main>
+          <main className="w-full max-w-4xl px-6 md:px-8">{children}</main>
         </div>
       </body>
     </html>

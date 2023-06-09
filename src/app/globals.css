@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply min-w-[300px] bg-[#111111] text-white;
+    @apply min-w-[300px] bg-[#111111] text-white selection:bg-white selection:text-black;
   }
 }
