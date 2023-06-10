@@ -1,11 +1,10 @@
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid"
-import Link from "next/link"
+import ArrowLink from "../components/ArrowLink"
 
 export default function About() {
   return (
     <div className="mb-10 mt-8">
-      <h1 className="mb-8 text-xl font-bold tracking-wide">About me</h1>
-      <div className="sm:text-lg">
+      <h1 className="mb-8 text-2xl font-bold tracking-wide">About me</h1>
+      <div className="text-zinc-100 sm:text-lg">
         <p>
           Hello, my name is Argyris and I&apos;ve been a self-taught developer for the past three
           years. I&apos;m specializing in web development with Typescript, React and Next.js.
@@ -34,13 +33,7 @@ export default function About() {
           frontend developer.
         </p>
       </div>
-      <Link
-        href="/projects"
-        className="mt-12 block w-fit text-xl hover:text-indigo-400 hover:underline"
-      >
-        <ArrowLongRightIcon className="mr-1 inline-block h-6 w-8 fill-zinc-300 pb-[1px]" />
-        See some of my projects
-      </Link>
+      <ArrowLink href="/projects">See some of my projects</ArrowLink>
     </div>
   )
 }

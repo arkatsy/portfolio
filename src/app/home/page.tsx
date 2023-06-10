@@ -1,13 +1,12 @@
 import Image from "next/image"
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid"
-import Link from "next/link"
+import ArrowLink from "../components/ArrowLink"
 
 export default function Home() {
   return (
     <>
       <div className="mt-8 flex flex-col items-center sm:mt-16 sm:flex-row sm:justify-center sm:gap-10">
         <ProfileImage />
-        <p className="mt-8 max-w-xs text-lg leading-relaxed md:text-xl">
+        <p className="mt-8 max-w-xs text-lg leading-relaxed text-zinc-100 md:text-xl">
           Hey! I&apos;m{" "}
           <span className="whitespace-nowrap font-bold text-indigo-400 ">
             Argyris Katsigiannides
@@ -15,13 +14,7 @@ export default function Home() {
           .
           <br />
           I&apos;m a developer from Greece.
-          <Link
-            href="/about"
-            className="mt-12 block w-fit text-xl hover:text-indigo-400 hover:underline"
-          >
-            <ArrowLongRightIcon className="mr-1 inline-block h-6 w-8 fill-zinc-300 pb-[1px]" />
-            More about me
-          </Link>
+          <ArrowLink href="/about">More about me</ArrowLink>
         </p>
       </div>
     </>
