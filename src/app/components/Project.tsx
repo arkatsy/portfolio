@@ -1,5 +1,5 @@
 import { LinkIcon } from "@heroicons/react/24/solid"
-import Link from "next/link"
+import NewTabLink from "./NewTabLink"
 
 type ProjectProps = {
   title: string
@@ -33,13 +33,5 @@ export default function Project({ title, description, link, liveLink }: ProjectP
         )}
       </div>
     </div>
-  )
-}
-
-function NewTabLink({ children, ...props }: { children: React.ReactNode; [key: string]: any }) {
-  return (
-    <Link href={props.href} {...props} rel="noopener noreferrer" target="_blank">
-      {children}
-    </Link>
   )
 }
