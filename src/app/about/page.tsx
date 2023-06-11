@@ -29,8 +29,9 @@ export default function About() {
         </p>
         <br />
         <p>
-          I am actively seeking a job opportunity that will allow me to launch my career as a
-          frontend developer.
+          I am actively seeking a frontend developer job that will allow me to utilize my skills by
+          building high-quality software and grow as a developer. If you&apos;re interested in
+          working with me, feel free to contact me.
         </p>
       </div>
       <ArrowLink href="/projects">See some of my projects</ArrowLink>
