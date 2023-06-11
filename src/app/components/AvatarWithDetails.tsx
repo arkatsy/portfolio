@@ -22,7 +22,7 @@ function Avatar() {
   return (
     <div className="relative h-10 w-10">
       <Image
-        src="/images/profile.png"
+        src="/images/profile.jpg"
         className="rounded-full"
         alt="Argyris Katsigiannides"
         priority={false}

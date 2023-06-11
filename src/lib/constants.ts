@@ -11,18 +11,6 @@ export const menuLinks = [
     name: "Projects",
     href: "/projects",
   },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
-  // {
-  //   name: "Links",
-  //   href: "/links",
-  // },
 ]
 
 export const projectsList = [

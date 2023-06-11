@@ -24,13 +24,13 @@ export default function Home() {
 function ProfileImage() {
   return (
     <Image
-      src="/images/profile.png"
+      src="/images/profile.jpg"
       className="h-24 w-24 rounded-full shadow-md sm:h-40 sm:w-40"
       alt="Argyris Katsigiannides"
       priority={true}
       width={400}
       height={400}
-      blurDataURL="/images/profile.png"
+      blurDataURL="/images/profile.jpg"
       draggable={false}
       style={{
         objectFit: "cover",

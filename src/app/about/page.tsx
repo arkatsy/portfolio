@@ -25,7 +25,7 @@ export default function About() {
         <p>
           Although my programming experience goes beyond web development, I have a strong passion
           for frontend development. However, I am not limited to that and continually strive to
-          expand my knowledge and enhance my skills.
+          expand my knowledge and enhance my software building skills.
         </p>
         <br />
         <p>

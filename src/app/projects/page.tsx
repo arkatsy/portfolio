@@ -15,7 +15,7 @@ export default function ProjectsPage() {
           </Fragment>
         ))}
       </div>
-      <ArrowLink href="/contact">Contact me</ArrowLink>
+      <ArrowLink href="/home">Go back to home</ArrowLink>
     </div>
   )
 }
