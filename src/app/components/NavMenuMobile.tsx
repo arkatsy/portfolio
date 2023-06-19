@@ -36,7 +36,7 @@ export default function NavMenuMobile() {
               <ul className="mt-12 overflow-hidden">
                 {menuLinks.map((item) => (
                   <li key={item.name} className="mt-4 flex">
-                    <Link className="group w-screen py-4 pl-12" href={item.href} onClick={close}>
+                    <Link className="group w-screen py-4 pl-14" href={item.href} onClick={close}>
                       <span
                         className={twMerge(
                           "text-2xl text-zinc-300 group-hover:border-b-2 group-hover:text-zinc-100",

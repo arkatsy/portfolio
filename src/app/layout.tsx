@@ -1,6 +1,7 @@
 import "./globals.css"
 import { Space_Grotesk } from "next/font/google"
 import Topbar from "./components/Topbar"
+import { Toaster } from "react-hot-toast"
 
 const inter = Space_Grotesk({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
         </div>
         <div className="flex justify-center">
+          <Toaster />
           <main className="w-full max-w-4xl px-6 md:px-8">{children}</main>
         </div>
       </body>

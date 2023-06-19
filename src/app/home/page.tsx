@@ -1,6 +1,8 @@
 import Image from "next/image"
 import ArrowLink from "../components/ArrowLink"
 import NewTabLink from "../components/NewTabLink"
+import CopyButton from "../components/CopyButtonText"
+import { ArrowDownTrayIcon } from "@heroicons/react/24/solid"
 
 export default function Home() {
   return (
@@ -20,13 +22,13 @@ export default function Home() {
       </div>
       <ul className="flex w-fit flex-col gap-4 text-left tracking-wide text-zinc-300">
         <li>
-          <span>Email: </span>
+          <span className="font-semibold">Email: </span>
           <a className="hover:underline hover:underline-offset-4" href="mailto: arkatsy@gmail.com">
             arkatsy@gmail.com
           </a>
         </li>
         <li>
-          <span>Github: </span>
+          <span className="font-semibold">Github: </span>
           <NewTabLink
             className="hover:underline hover:underline-offset-4"
             href="https://github.com/arkatsy"
@@ -35,13 +37,24 @@ export default function Home() {
           </NewTabLink>
         </li>
         <li>
-          <span>Linkedin: </span>
+          <span className="font-semibold">Linkedin: </span>
           <NewTabLink
             className="hover:underline hover:underline-offset-4"
             href="https://www.linkedin.com/in/arkatsy/"
           >
             linkedin.com/in/arkatsy
           </NewTabLink>
+        </li>
+        <li>
+          <span className="font-semibold">Discord: </span>
+          <CopyButton text="arkatsy#0658">arkatsy#0658</CopyButton>
+        </li>
+        <li>
+          <span className="font-semibold">Resume: </span>
+          <a href="/files/resume.pdf" className="text-zinc-400" download>
+            resume.pdf
+            <ArrowDownTrayIcon className="mb-[3px] ml-2 inline-block h-5 w-5 text-zinc-500" />
+          </a>
         </li>
       </ul>
     </div>
