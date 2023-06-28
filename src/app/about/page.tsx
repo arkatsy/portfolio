@@ -11,9 +11,15 @@ export default function About() {
         </p>
         <br />
         <p>
-          Although I consider myself a frontend developer, I always find myself working with backend
-          technologies as well. The backend technologies I usually prefer to use are Node.js and
-          PostgreSQL.
+          More specifically about the technologies I use. <br />
+          Generally for web development I always go with Typescript and React. Even though I&apos;m
+          always open to try new things, I draw the line in Typescript. The convenience of
+          Typescript is just too good to let go.
+          <br />
+          <br />
+          On the backend side of things now, I don&apos;t have a strong opinion. My usual preferred
+          stack is either Node.js with PostgreSQL and an ORM like Prisma but I like to experiment
+          with new technologies and as always choose the right tool for the job.
         </p>
         <br />
         <p>
