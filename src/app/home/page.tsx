@@ -47,15 +47,15 @@ export default function Home() {
         </li>
         <li>
           <span className="font-semibold">Discord: </span>
-          <CopyButton text="arkatsy#0658">arkatsy#0658</CopyButton>
+          <CopyButton text="arkatsy#0658">arkatsy</CopyButton>
         </li>
-        <li>
+        {/* <li>
           <span className="font-semibold">Resume: </span>
           <a href="/files/resume.pdf" className="text-zinc-400" download>
             resume.pdf
             <ArrowDownTrayIcon className="mb-[3px] ml-2 inline-block h-5 w-5 text-zinc-500" />
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   )
