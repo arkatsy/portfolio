@@ -6,8 +6,8 @@ export default function About() {
       <h1 className="mb-8 text-2xl font-bold tracking-wide">About me</h1>
       <div className="text-zinc-100 sm:text-lg">
         <p>
-          Hello, my name is Argyris and I&apos;ve been a web developer for the past three years.
-          I&apos;m specializing in Typescript, React and Next.js.
+          Hello, my name is Argyris and I&apos;ve been a software developer for the past three
+          years. I&apos;m specializing in Typescript, React and anything JS.
         </p>
         <br />
         <p>

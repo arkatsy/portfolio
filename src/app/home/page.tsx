@@ -2,7 +2,6 @@ import Image from "next/image"
 import ArrowLink from "../components/ArrowLink"
 import NewTabLink from "../components/NewTabLink"
 import CopyButton from "../components/CopyButtonText"
-import { ArrowDownTrayIcon } from "@heroicons/react/24/solid"
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
           </span>
           .
           <br />
-          I&apos;m a developer from Greece.
+          I&apos;m a software developer from Greece.
           <ArrowLink href="/about">More about me</ArrowLink>
         </p>
       </div>
